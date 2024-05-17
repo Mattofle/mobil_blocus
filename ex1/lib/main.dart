@@ -1,3 +1,4 @@
+import 'package:ex1/laureat_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -48,7 +49,7 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title ;
+  final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -70,28 +71,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
         title: Text(widget.title),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-
           children: [
-            Text(laureate1["motivation"].toString()),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(laureate1["firstname"].toString()),
-                Text(laureate1["surname"].toString()),
-              ],
-            )
+            LaureateWidget(
+                firstname: "Al",
+                lastname: "Gore",
+                motivation:
+                    "For their efforts to build up and disseminate greater knowledge about man-made climate change, and to lay the foundations for the measures that are needed to counteract such change.")
           ],
         ),
       ),
@@ -104,7 +98,6 @@ const laureate1 = {
   "firstname": "Al",
   "surname": "Gore",
   "motivation":
-  "For their efforts to build up and disseminate greater knowledge about man-made climate change, and to lay the foundations for the measures that are needed to counteract such change.",
+      "For their efforts to build up and disseminate greater knowledge about man-made climate change, and to lay the foundations for the measures that are needed to counteract such change.",
   "share": "2"
 };
-
