@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class LaureateWidget extends StatelessWidget {
   final String firstname;
@@ -13,18 +14,33 @@ class LaureateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(motivation),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
           children: [
-            Text(firstname),
-            SizedBox(width: 8), // This adds a small space between the firstname and lastname
-            Text(lastname),
+            Card(
+              color: Colors.grey,
+              child : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child : Text(
+                  "$firstname $lastname",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.amber,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              motivation,
+              textAlign: TextAlign.justify,
+            ),
           ],
         ),
-      ],
+      ),
     );
   }
 }
