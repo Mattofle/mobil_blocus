@@ -1,25 +1,16 @@
-import 'package:flutter/cupertino.dart';
-
-class Property extends StatelessWidget {
+class Property {
   final String contract;
   final String type;
   final double m2;
   final int nbChambre;
   final double prix;
 
-  const Property({
-    super.key,
+  Property({
     required this.contract,
     required this.type,
     required this.m2,
     required this.nbChambre,
-    required this.prix,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
+    required this.prix});
 }
 
 List<Property> _createProperties() {
