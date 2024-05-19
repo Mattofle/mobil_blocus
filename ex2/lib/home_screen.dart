@@ -12,9 +12,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool _switchValue = false;
+
   @override
   Widget build(BuildContext context) {
-    final displayedProperties = defaultProperties;
+    final displayedProperties = _switchValue ? defaultProperties.where((property) => property.contract == 'Vente').toList() : defaultProperties.where((property) => property.contract == 'Location').toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -25,14 +27,28 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         padding: const EdgeInsets.all(16.0),
           child: Center(
-          child: SizedBox(
-            width: 512.0,
-            child: ListView.separated(
-              itemCount: displayedProperties.length,
-              itemBuilder: (context, index) =>
-                  PropertyRow(property: displayedProperties[index]), separatorBuilder: (BuildContext context, int index) { return Divider();},
-            ),
-          ),
+          child: Column(
+            children: [
+              SwitchListTile(
+                  title: const Text("Afficher les propriétés à vendre"),
+                  value: _switchValue,
+                  onChanged: (vlaue) {
+                setState((){
+                  _switchValue = !_switchValue;
+                });
+                  }),
+              Expanded(
+                child: SizedBox(
+                  width: 512.0,
+                  child: ListView.builder(
+                    itemCount: displayedProperties.length,
+                    itemBuilder: (context, index) =>
+                        PropertyRow(property: displayedProperties[index]),
+                  ),
+                ),
+              ),
+            ]
+          )
         ),
 
       ),
