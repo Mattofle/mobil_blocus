@@ -45,3 +45,5 @@ List<Property> _createProperties() {
     ),
   ];
 }
+
+final defaultProperties = _createProperties();
