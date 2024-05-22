@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'notes.dart';
 
 class MyForm extends StatefulWidget {
-  //final void Function(Note) addNote;
+  final void Function(Note) addNote;
   const MyForm({
     super.key,
-    //required this.addNote,
+    required this.addNote,
   });
 
   @override
@@ -60,8 +60,13 @@ class _MyFormState extends State<MyForm> {
             child: const Text("Send note"),
             onPressed: () {
               if (formKey.currentState!.validate()) {
+                widget.addNote(Note(
+                  title: controller.text,
+                  content: contentController.text,
+                ));
                 // widget.setColor(controller.text);
                 controller.text = "";
+                contentController.text = "";
               }
             },
           )

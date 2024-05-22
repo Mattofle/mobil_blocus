@@ -19,6 +19,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void addNote (Note note) {
+    setState(() {
+      defaultNotes.add(note);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final displayedNotes = defaultNotes;
@@ -40,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ), separatorBuilder: (BuildContext context, int index) { return const Divider();},
               ),
               ),
-              MyForm(),
+              MyForm(addNote: addNote),
             ],
           )
         ),
