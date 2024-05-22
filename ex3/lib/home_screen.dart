@@ -1,3 +1,4 @@
+import 'package:ex3/my_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,12 +28,22 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Notes'),
       ),
       body: Container(
-        child: ListView.separated(
-          itemCount: displayedNotes.length,
-          itemBuilder: (context, index) =>
-              NotesRow(note: displayedNotes[index], onDelete: deleteNote,
-        ), separatorBuilder: (BuildContext context, int index) { return const Divider();},
-      ),
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: Column(
+            children: [
+              Expanded(
+                child : ListView.separated(
+                itemCount: displayedNotes.length,
+                itemBuilder: (context, index) =>
+                    NotesRow(note: displayedNotes[index], onDelete: deleteNote,
+                    ), separatorBuilder: (BuildContext context, int index) { return const Divider();},
+              ),
+              ),
+              MyForm(),
+            ],
+          )
+        ),
       )
     );
   }
