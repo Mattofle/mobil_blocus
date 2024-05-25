@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'second_screen.dart';
-import 'first_screen.dart';
+import 'package:tuto4/view_models/click_view_model.dart';
+import 'package:tuto4/views/user_screen.dart';
+import 'views/second_screen.dart';
+import 'views/first_screen.dart';
+import 'package:provider/provider.dart';
 
 final GoRouter _router = GoRouter(
   initialLocation: '/',
@@ -9,7 +12,8 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) {
-        final int nbClicks = (state.extra ?? 0) as int;
+        final int nbClicks =
+            Provider.of<ClickViewModel>(context, listen: false).clicks;
         return FirstScreen(nbClicks: nbClicks);
       },
       routes: [
@@ -17,14 +21,24 @@ final GoRouter _router = GoRouter(
           path: 'secondscreen',
           builder: (context, state) => const SecondScreen(),
         ),
+        GoRoute(
+          path: 'users/:username',
+          builder: (context, state) =>
+              UserScreen(username: state.pathParameters['username'] ?? ''),
+        ),
       ],
     ),
   ],
 );
 
+
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider<ClickViewModel>(
+    create: (context) => ClickViewModel(),
+    child: const MyApp(),
+  ));
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
