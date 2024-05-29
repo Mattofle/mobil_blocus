@@ -8,10 +8,10 @@ class Photos{
   final String thumbnailUrl;
 
   Photos({
-    required this.id,
-    required this.title,
-    required this.url,
-    required this.thumbnailUrl
+    this.id = -1,
+    this.title = "no title",
+    this.url = "no url",
+    this.thumbnailUrl = "no thumbnailUrl"
   });
 
   factory Photos.fromJson(Map<String, dynamic> json){

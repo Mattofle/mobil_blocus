@@ -1,4 +1,5 @@
 import 'package:ex6/view_models/photo_view_model.dart';
+import 'package:ex6/views/add_photo_screen.dart';
 import 'package:ex6/views/photo_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,8 +13,8 @@ final GoRouter _router = GoRouter(
       builder: (context, state) => PhotoScreen(),
       routes: [
         GoRoute(
-          path: 'photo_screen',
-          builder: (context, state) => const PhotoScreen(),
+          path: 'photos/add',
+          builder: (context, state) => const AddPhotoScreen(),
         ),
       ],
     ),
